@@ -1,0 +1,6 @@
+feat: persistent background blobs and SEO/a11y polish
+
+- Move blobs to global fixed BackgroundBlobs so they stay visible on scroll
+- Adjust sizes/positions (top-left 55vw, bottom-right large)
+- Add manifest/icons and theme-color; remove incorrect twitter:site
+- Add skip-to-content link and semantic main; keep layout unchanged
