@@ -49,19 +49,19 @@ const Contact = () => {
                 <Button
                   key={method.label}
                   variant="outline"
-                  className="h-auto p-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all"
+                  className="h-auto p-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all justify-start text-left"
                   asChild
                 >
                   <a 
                     href={method.href}
                     target={method.href.startsWith('http') ? '_blank' : undefined}
                     rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-3 w-full"
+                    className="flex items-center gap-3 w-full justify-start min-w-0"
                   >
                     <Icon className="w-5 h-5 text-primary shrink-0" />
-                    <div className="text-left">
-                      <div className="text-xs text-muted-foreground">{method.label}</div>
-                      <div className="font-medium">{method.value}</div>
+                    <div className="flex items-baseline gap-2 min-w-0">
+                      <span className="text-sm text-muted-foreground whitespace-nowrap">{method.label}:</span>
+                      <span className="font-medium truncate" title={method.value}>{method.value}</span>
                     </div>
                   </a>
                 </Button>
