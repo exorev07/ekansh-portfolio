@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Hero = () => {
   return (
@@ -43,34 +44,69 @@ const Hero = () => {
           </div>
           
           <div className="flex gap-4 justify-center">
-            <a 
-              href="https://github.com/exorev07" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a 
-              href="https://linkedin.com/in/ekansharohi" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a 
-              href="mailto:ekansharohi135@gmail.com"
-              className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-            <a 
-              href="tel:+918500721305"
-              className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
-            >
-              <Phone className="w-5 h-5" />
-            </a>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://github.com/exorev07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub: https://github.com/exorev07"
+                  className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="backdrop-blur-md bg-background/40 border-border/40 text-foreground">
+                https://github.com/exorev07
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://linkedin.com/in/ekansharohi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn: https://linkedin.com/in/ekansharohi"
+                  className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="backdrop-blur-md bg-background/40 border-border/40 text-foreground">
+                https://linkedin.com/in/ekansharohi
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="mailto:ekansharohi135@gmail.com"
+                  aria-label="Email: ekansharohi135@gmail.com"
+                  className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="backdrop-blur-md bg-background/40 border-border/40 text-foreground">
+                ekansharohi135@gmail.com
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="tel:+918500721305"
+                  aria-label="Phone: +91 85007 21305"
+                  className="p-3 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all hover:shadow-[0_0_15px_hsl(270_70%_60%/0.3)]"
+                >
+                  <Phone className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="backdrop-blur-md bg-background/40 border-border/40 text-foreground">
+                +91 85007 21305
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>

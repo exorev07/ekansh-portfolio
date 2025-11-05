@@ -18,7 +18,7 @@ const App = () => (
     >
       Skip to content
     </a>
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       {/* Global fixed background blobs */}
       <BackgroundBlobs />
       <Toaster />
