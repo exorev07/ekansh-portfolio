@@ -1,16 +1,10 @@
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { useEffect, useState } from "react";
+import { useSmoothScrollY } from "@/hooks/useSmoothScrollY";
 
 const Hero = () => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrollY = useSmoothScrollY();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -18,7 +12,7 @@ const Hero = () => {
       <div className="pointer-events-none fixed inset-0 z-0">
         {/* Top Left Corner */}
         <div 
-          className="absolute -top-32 -left-32 w-[40vw] h-[40vw] opacity-40 animate-float"
+          className="absolute -top-32 -left-32 w-[40vw] h-[40vw] opacity-40 animate-float will-change-transform"
           style={{ transform: `translateY(${scrollY * 0.3}px)` }}
         >
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -28,7 +22,7 @@ const Hero = () => {
 
         {/* Top Right Corner */}
         <div 
-          className="absolute -top-24 -right-24 w-[35vw] h-[35vw] opacity-35 animate-float" 
+          className="absolute -top-24 -right-24 w-[35vw] h-[35vw] opacity-35 animate-float will-change-transform" 
           style={{ animationDelay: "0.5s", transform: `translateY(${scrollY * 0.2}px)` }}
         >
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -38,7 +32,7 @@ const Hero = () => {
 
         {/* Bottom Left Corner */}
         <div 
-          className="absolute -bottom-28 -left-28 w-[38vw] h-[38vw] opacity-30 animate-float" 
+          className="absolute -bottom-28 -left-28 w-[38vw] h-[38vw] opacity-30 animate-float will-change-transform" 
           style={{ animationDelay: "1s", transform: `translateY(${scrollY * -0.25}px)` }}
         >
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -48,7 +42,7 @@ const Hero = () => {
 
         {/* Bottom Right Corner */}
         <div 
-          className="absolute -bottom-32 -right-32 w-[42vw] h-[42vw] opacity-35 animate-float" 
+          className="absolute -bottom-32 -right-32 w-[42vw] h-[42vw] opacity-35 animate-float will-change-transform" 
           style={{ animationDelay: "1.5s", transform: `translateY(${scrollY * -0.3}px)` }}
         >
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -58,7 +52,7 @@ const Hero = () => {
       </div>
       
       <div 
-        className="container mx-auto px-4 relative z-10"
+        className="container mx-auto px-4 relative z-10 will-change-transform will-change-opacity"
         style={{ 
           transform: `translateY(${scrollY * 0.5}px)`,
           opacity: Math.max(0, 1 - scrollY / 500)

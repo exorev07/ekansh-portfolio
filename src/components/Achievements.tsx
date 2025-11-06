@@ -1,12 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { Trophy, Award, Code } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollVanish } from "@/hooks/useScrollVanish";
 
 const Achievements = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
   const { ref: card1Ref, isVisible: card1Visible } = useScrollAnimation();
   const { ref: card2Ref, isVisible: card2Visible } = useScrollAnimation();
   const { ref: card3Ref, isVisible: card3Visible } = useScrollAnimation();
+  const { ref: vanishRef, style: vanishStyle } = useScrollVanish();
 
   const achievements = [
     {
@@ -31,7 +33,11 @@ const Achievements = () => {
 
   return (
     <section id="achievements" className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto max-w-6xl">
+      <div
+        ref={vanishRef}
+        style={vanishStyle}
+        className="container mx-auto max-w-6xl transition-transform duration-500 ease-out"
+      >
         <h2 
           ref={titleRef}
           className={`text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent scroll-fade-in ${titleVisible ? 'visible' : ''}`}

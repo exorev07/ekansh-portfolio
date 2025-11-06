@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, Github, Linkedin } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollVanish } from "@/hooks/useScrollVanish";
 
 const Contact = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
   const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
+  const { ref: vanishRef, style: vanishStyle } = useScrollVanish();
 
   const contactMethods = [
     {
@@ -36,7 +38,11 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto max-w-4xl">
+      <div
+        ref={vanishRef}
+        style={vanishStyle}
+        className="container mx-auto max-w-4xl transition-transform duration-500 ease-out"
+      >
         <h2 
           ref={titleRef}
           className={`text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent scroll-fade-in ${titleVisible ? 'visible' : ''}`}
