@@ -1,7 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Users, Share2 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Leadership = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: card1Ref, isVisible: card1Visible } = useScrollAnimation();
+  const { ref: card2Ref, isVisible: card2Visible } = useScrollAnimation();
+
   const positions = [
     {
       icon: Users,
@@ -22,17 +27,24 @@ const Leadership = () => {
   return (
     <section id="leadership" className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <h2 
+          ref={titleRef}
+          className={`text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent scroll-fade-in ${titleVisible ? 'visible' : ''}`}
+        >
           Leadership & Responsibilities
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">
-          {positions.map((position, index) => {
+          {positions.map((position, idx) => {
             const Icon = position.icon;
+            const refs = [card1Ref, card2Ref];
+            const visibles = [card1Visible, card2Visible];
+            
             return (
               <Card 
-                key={index}
-                className="p-6 bg-card border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(270_70%_60%/0.2)]"
+                key={idx}
+                ref={refs[idx]}
+                className={`p-6 bg-card border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(270_70%_60%/0.2)] hover:scale-105 scroll-slide-${idx === 0 ? 'left' : 'right'} ${visibles[idx] ? 'visible' : ''}`}
               >
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-lg bg-primary/10 border border-primary/30 shrink-0">

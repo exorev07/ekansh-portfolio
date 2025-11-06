@@ -1,8 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, Github, Linkedin } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
+
   const contactMethods = [
     {
       icon: Mail,
@@ -33,11 +37,17 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-4xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <h2 
+          ref={titleRef}
+          className={`text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent scroll-fade-in ${titleVisible ? 'visible' : ''}`}
+        >
           Get In Touch
         </h2>
         
-        <Card className="p-8 bg-card border-primary/20 shadow-[0_0_40px_hsl(270_70%_60%/0.2)]">
+        <Card 
+          ref={cardRef}
+          className={`p-8 bg-card border-primary/20 shadow-[0_0_40px_hsl(270_70%_60%/0.2)] scroll-scale-in ${cardVisible ? 'visible' : ''}`}
+        >
           <p className="text-center text-muted-foreground mb-8 text-lg">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
           </p>
@@ -49,7 +59,7 @@ const Contact = () => {
                 <Button
                   key={method.label}
                   variant="outline"
-                  className="h-auto p-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all justify-start text-left"
+                  className="h-auto p-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all justify-start text-left hover:scale-105"
                   asChild
                 >
                   <a 

@@ -1,7 +1,13 @@
 import { Card } from "@/components/ui/card";
 import { Trophy, Award, Code } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Achievements = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: card1Ref, isVisible: card1Visible } = useScrollAnimation();
+  const { ref: card2Ref, isVisible: card2Visible } = useScrollAnimation();
+  const { ref: card3Ref, isVisible: card3Visible } = useScrollAnimation();
+
   const achievements = [
     {
       icon: Trophy,
@@ -26,17 +32,24 @@ const Achievements = () => {
   return (
     <section id="achievements" className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <h2 
+          ref={titleRef}
+          className={`text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent scroll-fade-in ${titleVisible ? 'visible' : ''}`}
+        >
           Achievements
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          {achievements.map((achievement, index) => {
+          {achievements.map((achievement, idx) => {
             const Icon = achievement.icon;
+            const refs = [card1Ref, card2Ref, card3Ref];
+            const visibles = [card1Visible, card2Visible, card3Visible];
+            
             return (
               <Card 
-                key={index}
-                className="p-6 bg-card border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(270_70%_60%/0.2)]"
+                key={idx}
+                ref={refs[idx]}
+                className={`p-6 bg-card border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(270_70%_60%/0.2)] hover:scale-105 scroll-scale-in ${visibles[idx] ? 'visible' : ''}`}
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="p-4 rounded-full bg-primary/10 border border-primary/30 mb-4">

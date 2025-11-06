@@ -2,8 +2,10 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Projects = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
   const projects = [
     {
       title: "Curalink - IoT Smart Hospital Bed Management",
@@ -35,15 +37,23 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <h2 
+          ref={titleRef}
+          className={`text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent scroll-fade-in ${titleVisible ? 'visible' : ''}`}
+        >
           Projects
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
+          {projects.map((project, index) => {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
+            
+            return (
             <Card 
               key={index}
-              className="p-6 bg-card border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(270_70%_60%/0.2)] flex flex-col"
+              ref={cardRef}
+              className={`p-6 bg-card border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(270_70%_60%/0.2)] hover:scale-105 flex flex-col scroll-fade-in ${cardVisible ? 'visible' : ''}`}
             >
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-3">
@@ -85,7 +95,7 @@ const Projects = () => {
                 ))}
               </div>
             </Card>
-          ))}
+          )})}
         </div>
       </div>
     </section>
